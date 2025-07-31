@@ -124,6 +124,9 @@ The photo description in `PhotoItem` components shrinks on smaller screen sizes.
 - Implementing a `See more` button to expand the description
 - Ensuring users can read the complete description when needed
 
+Add loading feedback after pressing the `Sign In` button.
+Add an image placeholder as a fallback while the images are still loading.
+
 ### Error Handling
 
 We could add more specific error boundaries to the most critical features (e.g., `PhotoList` component). Instead of replacing the entire page with a generic error page, we could display a different interface for the specific area where it failed, keeping the rest of the rendered content intact.
