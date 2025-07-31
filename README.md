@@ -8,7 +8,7 @@ You can access the production app [here](https://frontend-coding-interview-one.v
 The production credentials are:
 ```
 username = test@user
-password = 1234
+password = T3st!@P@ssw0rd9
 ```
 
 ## Getting Started
