@@ -3,7 +3,7 @@ import PhotosList from "./components/PhotosList";
 import LogoIcon from "@/assets/logo.svg";
 import SkeletonList from "./components/SkeletonList";
 
-const AllPhotos = async () => {
+const AllPhotos = () => {
   return (
     <div className="py-8 flex flex-col gap-5 mx-auto max-w-[550px]">
       <LogoIcon />
