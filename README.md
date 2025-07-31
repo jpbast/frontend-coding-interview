@@ -128,6 +128,8 @@ Add loading feedback after pressing the `Sign In` button.
 
 Add an image placeholder as a fallback while the images are still loading.
 
+We could persist the liked image state on the server, so we don't have any flickering on the first render.
+
 ### Error Handling
 
 We could add more specific error boundaries to the most critical features (e.g., `PhotoList` component). Instead of replacing the entire page with a generic error page, we could display a different interface for the specific area where it failed, keeping the rest of the rendered content intact.
