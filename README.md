@@ -125,6 +125,7 @@ The photo description in `PhotoItem` components shrinks on smaller screen sizes.
 - Ensuring users can read the complete description when needed
 
 Add loading feedback after pressing the `Sign In` button.
+
 Add an image placeholder as a fallback while the images are still loading.
 
 ### Error Handling
