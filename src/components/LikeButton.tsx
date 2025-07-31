@@ -1,0 +1,34 @@
+"use client";
+
+import React, { useState } from "react";
+
+const LikeButton: React.FC = () => {
+  const [isActive, setIsActive] = useState(false);
+
+  return (
+    <button onClick={() => setIsActive(!isActive)}>
+      <svg
+        width={20}
+        height={20}
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="cursor-pointer transition-all hover:scale-110"
+      >
+        {isActive ? (
+          <path
+            d="M10 16.3625L3.81967 20L5.20001 12.6956L0 7.63932L7.03345 6.76248L10 0L12.9666 6.76248L20 7.63932L14.8001 12.6956L16.1804 20L10 16.3625Z"
+            fill="var(--color-star-active)"
+          />
+        ) : (
+          <path
+            d="M10 16.3625L3.81967 20L5.20001 12.6956L0 7.63932L7.03345 6.76248L10 0L12.9666 6.76248L20 7.63932L14.8001 12.6956L16.1804 20L10 16.3625ZM10 14.2508L13.7211 16.4409L12.89 12.0431L16.0208 8.99881L11.7861 8.47085L10 4.39928L8.21391 8.47085L3.9792 8.99881L7.11002 12.0431L6.27894 16.4409L10 14.2508Z"
+            fill="var(--color-star-inactive)"
+          />
+        )}
+      </svg>
+    </button>
+  );
+};
+
+export default LikeButton;

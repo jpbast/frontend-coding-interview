@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --background-inverted: #000;
+  --text-primary: #111827;
+  --text-secondary: #0075eb;
+  --text-tertiary: #ffffff;
+  --border-default: #9ca3af;
+  --yellow-default: #ffd600;
+  --fill-primary: #0075eb;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-inverted: var(--background-inverted);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-border-default: var(--border-default);
+  --color-star-active: var(--yellow-default);
+  --color-star-inactive: var(--border-default);
+  --color-fill-primary: var(--fill-primary);
+}
+
+body {
+  background: var(--background);
+  color: var(--text-primary);
+  font-family: Helvetica, sans-serif;
+}

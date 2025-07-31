@@ -1,40 +1,119 @@
 # Clever's Frontend Coding Interview
-👋 Hello!, Hola!, Witam!
 
-Thank you for taking the time to interview with Clever. This coding challenge is meant to be a _short_ exercise to see how you code on the frontend. Please don't spend more than a couple hours, and certainly don't stress. Treat it like you would any other coding task. Throw on some tunes 🎶, sit back, relax 😌, and code!
+An application built on top of React, Next.js and Tailwind CSS featuring a photo gallery with authentication. Users can sign in to view a curated collection of nature photos from the Pexels API.
 
-### Requirements
-- Create a small web app using React and Typescript.
-- Up to you how you scaffold it (eg. Next, Vite, even CRA).
-- However, please use either `npm` or `yarn`.
-- It will utilize the Pexels API to pull in some photos. Details below.
-- We'd like you to create two (mobile responsive) pages:
-  1. Sign in
-  2. All photos
-- You can fork this repo and commit your code there. Once done, please add the following users as members so we can review:
-  - James Crain (@imjamescrain)
-  - Jimmy Lien (@jlien)
-  - Nick Clucas (@nickcluc)
-  - Ryan McCue (@rymccue)
-- We'll circle back with you and review 1:1.
+## Getting Started
 
-### Details
-- Mocks for these pages are provided in Figma. You should have been sent an invite to access them, if not let us know.
-  - [Figma Mocks](https://www.figma.com/file/wr1seCuhlRtoFGuz1iWgyF/Frontend-Coding-Mocks?type=design&node-id=0%3A1&mode=design&t=Uw1av3TypDUDcLAd-1)
-  - We are looking for **attention to detail** when implementing these.
-- There is also a logo and an icon provided (SVGs) included in this repo.
-- Pexels API Info
-  - Api Key: `Mz0iC21IFLz9HuN8ypIbJ54l8OuGnpW2IsVoQrYBEyagQXt1YeBEA7H0`
-  - Include an `Authorization` header with this value.
-  - Endpoint: https://api.pexels.com/v1/search?query=nature&per_page=10
-  - Documenation: https://www.pexels.com/api/documentation/#photos-search
-- Make the "Sign in" page functional. However, you can spoof authentication any way you'd like (eg. save a value to local storage, etc).
-- Make "All photos" require authentication to access.
-- Only need to show 10 photos on the "All photos" page. Paging is not required.
-- Photos should be like/unlikeable.
+To get started with the project, follow these steps:
 
-### Final Thoughts
+1.  **Clone the repository**
 
-Remember, please don't spend too much time on this. In fact, save a little time and **add a section to the README** outlining what else you'd do differently to make this a production ready app. We really just want to make sure you understand core React concepts (ie. context providers, memoization, callbacks, etc).
+2.  **Environment Setup**:
+    Create a `.env.development.local` file in the root directory with the following environment variables:
 
-**Any questions**, just let us know. Send emails to <a href="mailto:james.crain@movewithclever.com">james.crain@movewithclever.com</a>. Good luck!
+    ```
+    # Pexels API endpoint
+    API_URL=https://api.pexels.com/v1
+
+    # Pexels API key
+    API_KEY=
+
+    # Add your username here. It'll be used to validate your credentials on the Sign In page. It should match exactly the same username you type in the input field
+    AUTH_USERNAME=
+
+    # Add your password here. It'll be used to validate your credentials on the Sign In page. It should match exactly the same password you type in the input field
+    AUTH_PASSWORD=
+    ```
+
+3.  **Install the dependencies**:
+    ```bash
+    npm install
+    ```
+4.  **Run the development server**:
+    ```bash
+    npm run dev
+    ```
+5.  **Open the application**:
+    Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
+
+## Project Structure
+
+- **`/app`**: Next.js router and API endpoints.
+- **`/assets`**: SVG icons.
+- **`/components`**: Generic and reusable components, such as Button and Skeleton.
+- **`/lib`**: Core functionalities, including API communication and other utilities.
+- **`/types`**: General types.
+- **`/views`**: A directory for larger, view-level components that compose pages.
+
+## Technical Decisions
+
+### Why Next.js?
+
+Using Next.js we can take advantage of Server Components, improving performance, user experience, and leveraging its built-in Node environment for backend purposes. Since the entire page doesn't need access to all the data, we can just request the data exactly where we need it. This approach leads to improved loading times and user experience, because Server Components don't need any additional JavaScript on the client side - they're purely HTML and CSS - which reduces the JS bundle sent to the user.
+
+### Why cookies?
+
+Since we're using Next.js for this project, we can leverage the Node environment. Storing the user credentials in Cookies, we're able to retrieve this information on the server, and then we can decide whether the user is allowed to visit the page or not. Considering user experience, it's a really good approach because we have no flickering or layout shift issues. When the page is delivered to the client, it's already delivered in the "right state" or "right page". Also, since we don't need any JavaScript on the client side to handle this auth validation, we can decrease the JS bundle sent to the client, improving loading times and bandwidth consumption.
+
+### Authentication
+
+The authentication is handled by the `api/sign-in` endpoint. The user's credentials must be set in the `.env.development.local` file, and this is exactly what the endpoint checks. If there is a match, it stores the user credentials in the Cookies for later validation, and `success` is returned. Otherwise, it returns an `errorMessage` as feedback for the user.
+
+### Validate authentication
+
+The home page which includes a list of photos, is a private route. This means that it requires an authenticated user to be visited. The authentication is validated through a server function called `isAuthenticated` which gets the user credentials from the cookies and compares them with the credentials set in the `.env.development.local` file.
+
+If they match, the user is able to visit the page. If not, they're redirected to the Sign In page.
+
+### Error handling
+
+The API calls are wrapped by a `try catch` block. If anything unexpected goes wrong, an Error will be thrown and will be caught by the Next.js built-in Error Boundaries, displaying the `error.tsx` component.
+
+### Theme
+
+You can check the app's theme in the `globals.css` file under the `app` folder. All color and semantic tokens were defined based on the Figma design.
+
+## App functionalities
+
+The app is pretty simple and should be straightforward to use. On your first attempt to access the Photos page, you'll be redirected to the Sign In page. The credentials asked should match exactly the ones you set in the `.env.development.local` file. If so, you'll be redirected to the photos page. If not, an `Invalid credentials` message will be displayed.
+
+The `Forgot password?` button displays a modal with instructions explaining how to set your password.
+
+On the Photos page, the photos are retrieved by the `PhotosList` server component. During the request, a Skeleton list is displayed as a fallback.
+
+If you decide to change the credentials you set in the `.env.development.local` file, your session will no longer be available and you'll be sent back to the Sign In page.
+
+## Things to improve
+
+The app is working well, but there are several areas for improvement:
+
+### Authentication
+
+The current authentication system shouldn't rely on environment variables for production use. A more secure approach would be to:
+
+- Implement a proper JWT-based authentication system
+- Store user credentials in a secure database
+- Use the existing `/api/sign-in` endpoint to validate credentials against the database
+- Store JWT tokens in cookies for session management
+- Handle all authentication validation through JWT tokens
+
+### Password Recovery
+
+The `Forgot password?` functionality could be enhanced by:
+
+- Creating a dedicated password reset endpoint
+- Implementing email-based password recovery
+- Building a frontend page for password reset
+- Storing new passwords securely in the database
+
+### UI Improvements
+
+The photo description in `PhotoItem` components shrinks on smaller screen sizes. Consider:
+
+- Adding a line clamp (e.g., 3 lines) for better text truncation
+- Implementing a `See more` button to expand the description
+- Ensuring users can read the complete description when needed
+
+### Error Handling
+
+We could add more specific error boundaries to the most critical features (e.g., `PhotoList` component). Instead of replacing the entire page with a generic error page, we could display a different interface for the specific area where it failed, keeping the rest of the rendered content intact.
