@@ -1,6 +1,15 @@
+<img width="2516" height="1101" alt="image" src="https://github.com/user-attachments/assets/7b1b546f-2a1a-47b7-a732-714809b85745" />
+
 # Clever's Frontend Coding Interview
 
 An application built on top of React, Next.js and Tailwind CSS featuring a photo gallery with authentication. Users can sign in to view a curated collection of nature photos from the Pexels API.
+
+You can access the production app [here](https://frontend-coding-interview-one.vercel.app/). 
+The production credentials are:
+```
+username = test@user
+password = 1234
+```
 
 ## Getting Started
 
@@ -68,6 +77,7 @@ If they match, the user is able to visit the page. If not, they're redirected to
 ### Error handling
 
 The API calls are wrapped by a `try catch` block. If anything unexpected goes wrong, an Error will be thrown and will be caught by the Next.js built-in Error Boundaries, displaying the `error.tsx` component.
+<img width="1454" height="737" alt="Global error component" src="https://github.com/user-attachments/assets/a1d97912-1934-47e7-8510-5c88a43ed9b6" />
 
 ### Theme
 
