@@ -11,7 +11,7 @@ type PhotoItemProps = {
 const PhotoItem = ({ photo }: PhotoItemProps) => {
   return (
     <div className="flex gap-3 flex-1 w-full items-start">
-      <LikeButton />
+      <LikeButton initialLiked={photo.liked} />
       <Image
         src={photo.src.medium}
         alt={photo.alt}

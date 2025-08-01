@@ -4,8 +4,9 @@
 
 An application built on top of React, Next.js and Tailwind CSS featuring a photo gallery with authentication. Users can sign in to view a curated collection of nature photos from the Pexels API.
 
-You can access the production app [here](https://frontend-coding-interview-one.vercel.app/). 
+You can access the production app [here](https://frontend-coding-interview-one.vercel.app/).
 The production credentials are:
+
 ```
 username = test@user
 password = 1234
@@ -51,6 +52,7 @@ To get started with the project, follow these steps:
 - **`/assets`**: SVG icons.
 - **`/components`**: Generic and reusable components, such as Button and Skeleton.
 - **`/lib`**: Core functionalities, including API communication and other utilities.
+- **`/tests`**: Unit tests
 - **`/types`**: General types.
 - **`/views`**: A directory for larger, view-level components that compose pages.
 
@@ -127,3 +129,7 @@ The photo description in `PhotoItem` components shrinks on smaller screen sizes.
 ### Error Handling
 
 We could add more specific error boundaries to the most critical features (e.g., `PhotoList` component). Instead of replacing the entire page with a generic error page, we could display a different interface for the specific area where it failed, keeping the rest of the rendered content intact.
+
+### Unit tests
+
+More tests could be added, covering more components and utility functions as well.

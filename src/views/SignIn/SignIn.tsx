@@ -65,7 +65,7 @@ const SignIn = () => {
           onChange={(e) => setUsername(e.target.value)}
         />
         <Input
-          name="email"
+          name="password"
           label="Password"
           placeholder="Enter your password"
           value={password}

@@ -2,8 +2,14 @@
 
 import React, { useState } from "react";
 
-const LikeButton: React.FC = () => {
-  const [isActive, setIsActive] = useState(false);
+type LikeButtonProps = {
+  initialLiked: boolean;
+};
+
+const LikeButton: React.FC<LikeButtonProps> = ({
+  initialLiked,
+}: LikeButtonProps) => {
+  const [isActive, setIsActive] = useState(initialLiked);
 
   return (
     <button onClick={() => setIsActive(!isActive)}>
