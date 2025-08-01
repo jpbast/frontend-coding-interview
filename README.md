@@ -9,7 +9,7 @@ The production credentials are:
 
 ```
 username = test@user
-password = 1234
+password = T3st!@P@ssw0rd9
 ```
 
 ## Getting Started
@@ -125,6 +125,12 @@ The photo description in `PhotoItem` components shrinks on smaller screen sizes.
 - Adding a line clamp (e.g., 3 lines) for better text truncation
 - Implementing a `See more` button to expand the description
 - Ensuring users can read the complete description when needed
+
+Add loading feedback after pressing the `Sign In` button.
+
+Add an image placeholder as a fallback while the images are still loading.
+
+We could persist the liked image state on the server, so we don't have any flickering on the first render.
 
 ### Error Handling
 
